@@ -3,27 +3,34 @@ import Task from "./Task";
 
 function TasksList(){
 	// connect to database here part
-	const tasksItemsList = [
+	const [tasksItemsList, setTaskItemsList] = useState([
 		"Follow Edukasyon.ph on Facebook.",
 		"Follow AWS Siklab Pilipinas on Facebook.",
 		"Follow Zuitt Coding Bootcamp on Facebook."
 		
-	];
+	]);
 
-const [taskValue, setTaskValue] = useState("Just another task");
-console.log("taskValue :", taskValue);
+const [taskValue, setTaskValue] = useState("");
+// console.log("taskValue :", taskValue);
 
 
 const inputChangeHandler = (e) => {
   setTaskValue(e.target.value)
 };
+
+const addTaskHandler = (e) => {
+  setTaskItemsList([e.target.value, ...tasksItemsList ]);
+  setTaskValue("");
+};
+
 	return (
 		<>
 				<input 
         className="task-input" 
         placeholder="Create a new task" 
         onChange={inputChangeHandler}
-
+        onBlur = {addTaskHandler}
+        value={taskValue}
         />
 
 			<ul>
