@@ -1,3 +1,4 @@
+import {useState} from "react";
 import Task from "./Task";
 
 function TasksList(){
@@ -9,9 +10,21 @@ function TasksList(){
 		
 	];
 
+const [taskValue, setTaskValue] = useState("Just another task");
+console.log("taskValue :", taskValue);
+
+
+const inputChangeHandler = (e) => {
+  setTaskValue(e.target.value)
+};
 	return (
 		<>
-				<input className="task-input" />
+				<input 
+        className="task-input" 
+        placeholder="Create a new task" 
+        onChange={inputChangeHandler}
+
+        />
 
 			<ul>
 		
